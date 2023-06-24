@@ -1,0 +1,111 @@
+*{
+    margin: 0;
+    box-sizing: border-box;
+    height: 100vh;
+    padding: 0;
+}
+:root{
+    --cell-size: 100px;
+    --mark-size: calc(var(--cell-size)*.9);
+}
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.gameboard{
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    height: 300px;
+    width: 300px;
+}
+.square{
+    height: var(--cell-size);
+    width: var(--cell-size);
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+.square:first-child,
+.square:nth-child(4),
+.square:nth-child(7) {
+    border-top: none;
+}
+
+.square:nth-child(2),
+.square:nth-child(3),
+.square:nth-child(1)
+{
+    border-left:none;
+}
+
+.square:nth-child(3),
+.square:nth-child(8),
+.square:nth-child(6),
+.square:nth-child(9)
+{
+    border-bottom: none;
+}
+
+.square:nth-child(9),
+.square:nth-child(8),
+.square:nth-child(7){
+    border-right: none;
+}
+
+/* cross css */
+.square.x::before,
+.square.x::after{
+    position: absolute;
+    content: "";
+    height: var(--mark-size);
+    width: calc(var(--mark-size) * .15);
+    background-color: black;
+}
+.square.x::before
+{
+    transform: rotate(45deg);
+}
+.square.x::after{
+    transform: rotate(-45deg);
+}
+
+/* circle css */
+.square.circle{
+    background-color: aqua;
+}
+
+.square.circle::before,
+.square.circle::after{
+    position: absolute;
+    content: "";
+    border-radius: 50%;
+}
+.square.circle::before{
+    background-color: black;
+    width: var(--mark-size);
+    height: var(--mark-size);
+}
+.square.circle::after{
+    background-color: white;
+    width: calc(var(--mark-size)* .7);
+    height: calc(var(--mark-size)* .7);
+}
+
+/* not allowed twice to click on same cell */
+.square.circle,
+.square.x{
+    cursor: not-allowed;
+}
+
+.reset{
+    width: 50px;
+    height: 50px;
+}
+.startgame{
+    width: 50px;
+    height: 50px;
+}
